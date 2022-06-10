@@ -1,3 +1,9 @@
-import { printGreetings } from './cli/messages.js';
+import readLine from 'readline';
+import { printGreetings, exitFunc } from './cli/messages.js';
+import { argv, stdin } from 'process';
 
-printGreetings(process.argv);
+printGreetings(argv);
+
+const rl = readLine.createInterface({ input: stdin });
+
+process.on('SIGINT', exitFunc);

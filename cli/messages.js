@@ -1,4 +1,12 @@
+import { stdout, exit } from 'process';
+let userName = '';
+
 export const printGreetings = (args) => {
-  const userName = args[2].replace('--username=', '');
-  process.stdout.write(`Welcome to the File Manager, ${userName} \n`);
+  userName = args[2].replace('--username=', '');
+  stdout.write(`Welcome to the File Manager, ${userName}! \n`);
+};
+
+export const exitFunc = () => {
+  stdout.write(`\nThank you for using File Manager, ${userName}! \n`);
+  exit();
 };

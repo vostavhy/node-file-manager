@@ -3,6 +3,9 @@ import { argv, stdin, stdout } from 'process';
 import readLine from 'readline';
 import os from 'os';
 
+const INVALID_INPUT = `Invalid input \n`;
+const OPERATION_FAILED = `Operation failed \n`;
+
 let currentDir = os.homedir();
 
 printGreetings(argv);
@@ -18,7 +21,7 @@ rl.on('line', (data) => {
       break;
 
     default:
-      stdout.write(`Invalid input \n`);
+      stdout.write(INVALID_INPUT);
       break;
   }
 });

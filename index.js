@@ -2,6 +2,7 @@ import { printGreetings, printDir, exitFunc } from './cli/messages.js';
 import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/up.js';
 import { getCdObj } from './navigation/cd.js';
+import { getList } from './navigation/list.js';
 import {
   INVALID_INPUT,
   OPERATION_FAILED,
@@ -39,6 +40,11 @@ rl.on('line', async (data) => {
       } else {
         stdout.write(OPERATION_FAILED);
       }
+      break;
+
+    case 'ls':
+      const list = await getList(currentDir);
+      console.log(list);
       break;
 
     default:

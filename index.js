@@ -1,11 +1,9 @@
 import { printGreetings, printDir, exitFunc } from './cli/messages.js';
 import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/navigation.js';
+import { INVALID_INPUT } from './utils/constants.js';
 import readLine from 'readline';
 import os from 'os';
-
-const INVALID_INPUT = `Invalid input \n`;
-const OPERATION_FAILED = `Operation failed \n`;
 
 let currentDir = os.homedir();
 

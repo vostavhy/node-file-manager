@@ -1,1 +1,3 @@
-console.log('hello fom main!');
+import { printGreetings } from './cli/messages.js';
+
+printGreetings(process.argv);

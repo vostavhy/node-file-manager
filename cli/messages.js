@@ -10,3 +10,7 @@ export const exitFunc = () => {
   stdout.write(`\nThank you for using File Manager, ${userName}! \n`);
   exit();
 };
+
+export const printCurrentDir = (currentDir) => {
+  stdout.write(`\nYou are currently in ${currentDir}! \n`);
+};

@@ -1,7 +1,12 @@
 import { printGreetings, printDir, exitFunc } from './cli/messages.js';
 import { argv, stdin, stdout } from 'process';
-import { getUpDir } from './navigation/navigation.js';
-import { INVALID_INPUT } from './utils/constants.js';
+import { getUpDir, getCdDir } from './navigation/navigation.js';
+import {
+  INVALID_INPUT,
+  OPERATION_FAILED,
+  STATUS_OK,
+  STATUS_ERROR,
+} from './utils/constants.js';
 import readLine from 'readline';
 import os from 'os';
 
@@ -12,7 +17,7 @@ printDir(currentDir);
 
 const rl = readLine.createInterface({ input: stdin });
 
-rl.on('line', (data) => {
+rl.on('line', async (data) => {
   const [command, ...args] = data.split(' ');
   switch (command) {
     case '.exit':
@@ -22,6 +27,22 @@ rl.on('line', (data) => {
     case 'up':
       currentDir = getUpDir(currentDir);
       printDir(currentDir);
+      break;
+
+    case 'cd':
+      const [newPath] = args;
+      if (newPath === '..') {
+        currentDir = getUpDir(currentDir);
+        printDir(currentDir);
+        break;
+      }
+      const cdObj = await getCdDir(currentDir, newPath);
+      if (cdObj.status === STATUS_OK) {
+        currentDir = cdObj.path;
+        printDir(currentDir);
+      } else {
+        stdout.write(OPERATION_FAILED);
+      }
       break;
 
     default:

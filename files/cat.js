@@ -1,7 +1,7 @@
-import path from 'path';
 import { createReadStream } from 'fs';
 import { access } from 'fs/promises';
 import { OPERATION_FAILED } from '../utils/constants.js';
+import path from 'path';
 
 export const readFile = async (currentDir, pathToFile) => {
   const filePath = path.join(currentDir, pathToFile);

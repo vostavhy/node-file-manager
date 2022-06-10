@@ -3,7 +3,8 @@ import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/up.js';
 import { getCdObj } from './navigation/cd.js';
 import { getList } from './navigation/list.js';
-import { readFile } from './fs/cat.js';
+import { readFile } from './files/cat.js';
+import { createFile } from './files/add.js';
 
 import {
   INVALID_INPUT,
@@ -52,6 +53,11 @@ rl.on('line', async (data) => {
     case 'cat':
       const [fileDir] = args;
       readFile(currentDir, fileDir);
+      break;
+
+    case 'add':
+      const [fileName] = args;
+      createFile(currentDir, fileName);
       break;
 
     default:

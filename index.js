@@ -1,6 +1,7 @@
 import { printGreetings, printDir, exitFunc } from './cli/messages.js';
 import { argv, stdin, stdout } from 'process';
-import { getUpDir, getCdDir } from './navigation/navigation.js';
+import { getUpDir } from './navigation/up.js';
+import { getCdObj } from './navigation/cd.js';
 import {
   INVALID_INPUT,
   OPERATION_FAILED,
@@ -30,13 +31,8 @@ rl.on('line', async (data) => {
       break;
 
     case 'cd':
-      const [newPath] = args;
-      if (newPath === '..') {
-        currentDir = getUpDir(currentDir);
-        printDir(currentDir);
-        break;
-      }
-      const cdObj = await getCdDir(currentDir, newPath);
+      const [newDir] = args;
+      const cdObj = await getCdObj(currentDir, newDir);
       if (cdObj.status === STATUS_OK) {
         currentDir = cdObj.path;
         printDir(currentDir);

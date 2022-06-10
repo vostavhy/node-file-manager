@@ -3,12 +3,14 @@ import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/up.js';
 import { getCdObj } from './navigation/cd.js';
 import { getList } from './navigation/list.js';
+import { readFile } from './fs/cat.js';
+
 import {
   INVALID_INPUT,
   OPERATION_FAILED,
   STATUS_OK,
-  STATUS_ERROR,
 } from './utils/constants.js';
+
 import readLine from 'readline';
 import os from 'os';
 
@@ -45,6 +47,11 @@ rl.on('line', async (data) => {
     case 'ls':
       const list = await getList(currentDir);
       console.log(list);
+      break;
+
+    case 'cat':
+      const [fileDir] = args;
+      readFile(currentDir, fileDir);
       break;
 
     default:

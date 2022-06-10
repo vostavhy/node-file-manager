@@ -1,5 +1,5 @@
 import { printGreetings, printCurrentDir, exitFunc } from './cli/messages.js';
-import { argv, stdin } from 'process';
+import { argv, stdin, stdout } from 'process';
 import readLine from 'readline';
 import os from 'os';
 
@@ -18,7 +18,7 @@ rl.on('line', (data) => {
       break;
 
     default:
-      console.log(args);
+      stdout.write(`Invalid input \n`);
       break;
   }
 });

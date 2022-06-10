@@ -11,6 +11,6 @@ export const exitFunc = () => {
   exit();
 };
 
-export const printCurrentDir = (currentDir) => {
-  stdout.write(`\nYou are currently in ${currentDir}! \n`);
+export const printDir = (dirToPrint) => {
+  stdout.write(`\nYou are currently in ${dirToPrint} \n`);
 };

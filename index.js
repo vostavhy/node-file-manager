@@ -7,6 +7,7 @@ import { readFile } from './files/cat.js';
 import { createFile } from './files/add.js';
 import { rename } from './files/rename.js';
 import { remove } from './files/remove.js';
+import { printEOL } from './os/eol.js';
 
 import {
   INVALID_INPUT,
@@ -82,6 +83,19 @@ rl.on('line', async (data) => {
       const [pathToFile, pathToNewDirectory] = args;
       copy(currentDir, pathToFile, pathToNewDirectory);
       remove(currentDir, pathToFile);
+      break;
+
+    case 'os':
+      const [arg] = args;
+      switch (arg) {
+        case '--EOL':
+          printEOL();
+          break;
+
+        default:
+          stdout.write(INVALID_INPUT);
+          break;
+      }
       break;
 
     default:

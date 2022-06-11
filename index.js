@@ -9,6 +9,7 @@ import { rename } from './files/rename.js';
 import { remove } from './files/remove.js';
 import { printEOL } from './os/eol.js';
 import { printCPUInfo } from './os/cpu.js';
+import { printHash } from './files/hash.js';
 
 import {
   INVALID_INPUT,
@@ -104,10 +105,31 @@ rl.on('line', async (data) => {
           printCPUInfo();
           break;
 
+        case '--homedir':
+          console.log(os.homedir());
+          break;
+
+        case '--username':
+          try {
+            console.log(os.userInfo().username);
+          } catch {
+            console.log('anonymous');
+          }
+          break;
+
+        case '--architecture':
+          console.log(os.arch());
+          break;
+
         default:
           stdout.write(INVALID_INPUT);
           break;
       }
+      break;
+
+    case 'hash':
+      const [hashPathToFile] = args;
+      printHash(currentDir, hashPathToFile);
       break;
 
     default:

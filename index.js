@@ -6,6 +6,7 @@ import { getList } from './navigation/list.js';
 import { readFile } from './files/cat.js';
 import { createFile } from './files/add.js';
 import { rename } from './files/rename.js';
+import { remove } from './files/remove.js';
 
 import {
   INVALID_INPUT,
@@ -70,6 +71,11 @@ rl.on('line', async (data) => {
     case 'copy':
       const [file, folder] = args;
       copy(currentDir, file, folder);
+      break;
+
+    case 'rm':
+      const [fileNameRemove] = args;
+      remove(currentDir, fileNameRemove);
       break;
 
     default:

@@ -10,15 +10,13 @@ export const printHash = (currentDir, fileName) => {
   let data = '';
 
   rs.on('data', (chunk) => (data += chunk));
-  console.log('data:', data);
-  console.log('path:', filePath);
 
-  rs.on('error', (error) => {
-    process.stdout.write(OPERATION_FAILED);
-    console.log(error.message);
-    return;
+  rs.on('end', () => {
+    hash.update(data);
+    console.log(hash.digest('hex'));
   });
 
-  hash.update(data);
-  console.log(hash.digest('hex'));
+  rs.on('error', () => {
+    process.stdout.write(OPERATION_FAILED);
+  });
 };

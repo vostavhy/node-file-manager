@@ -10,6 +10,7 @@ import { remove } from './files/remove.js';
 import { printEOL } from './os/eol.js';
 import { printCPUInfo } from './os/cpu.js';
 import { printHash } from './files/hash.js';
+import { printUsername } from './os/user.js';
 
 import {
   INVALID_INPUT,
@@ -110,11 +111,7 @@ rl.on('line', async (data) => {
           break;
 
         case '--username':
-          try {
-            console.log(os.userInfo().username);
-          } catch {
-            console.log('anonymous');
-          }
+          printUsername();
           break;
 
         case '--architecture':

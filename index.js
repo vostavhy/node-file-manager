@@ -5,6 +5,7 @@ import { getCdObj } from './navigation/cd.js';
 import { getList } from './navigation/list.js';
 import { readFile } from './files/cat.js';
 import { createFile } from './files/add.js';
+import { rename } from './files/rename.js';
 
 import {
   INVALID_INPUT,
@@ -58,6 +59,11 @@ rl.on('line', async (data) => {
     case 'add':
       const [fileName] = args;
       createFile(currentDir, fileName);
+      break;
+
+    case 'rn':
+      const [currentFile, newFile] = args;
+      rename(currentDir, currentFile, newFile);
       break;
 
     default:

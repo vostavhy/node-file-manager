@@ -1,4 +1,4 @@
-import { printGreetings, printDir, exitFunc } from './cli/messages.js';
+import { printGreetings, printDir, exitFunc } from './utils/messages.js';
 import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/up.js';
 import { getCdObj } from './navigation/cd.js';
@@ -12,11 +12,7 @@ import { printCPUInfo } from './os/cpu.js';
 import { printHash } from './files/hash.js';
 import { printUsername } from './os/user.js';
 
-import {
-  INVALID_INPUT,
-  OPERATION_FAILED,
-  STATUS_OK,
-} from './utils/constants.js';
+import { INVALID_INPUT, STATUS_OK } from './utils/constants.js';
 
 import readLine from 'readline';
 import os from 'os';

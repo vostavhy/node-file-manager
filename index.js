@@ -15,6 +15,7 @@ import {
 
 import readLine from 'readline';
 import os from 'os';
+import { copy } from './files/copy.js';
 
 let currentDir = os.homedir();
 
@@ -64,6 +65,11 @@ rl.on('line', async (data) => {
     case 'rn':
       const [currentFile, newFile] = args;
       rename(currentDir, currentFile, newFile);
+      break;
+
+    case 'copy':
+      const [file, folder] = args;
+      copy(currentDir, file, folder);
       break;
 
     default:

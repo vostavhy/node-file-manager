@@ -78,6 +78,12 @@ rl.on('line', async (data) => {
       remove(currentDir, fileNameRemove);
       break;
 
+    case 'mv':
+      const [pathToFile, pathToNewDirectory] = args;
+      copy(currentDir, pathToFile, pathToNewDirectory);
+      remove(currentDir, pathToFile);
+      break;
+
     default:
       stdout.write(INVALID_INPUT);
       break;

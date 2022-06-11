@@ -46,10 +46,8 @@ rl.on('line', async (data) => {
       const cdObj = await getCdObj(currentDir, newDir);
       if (cdObj.status === STATUS_OK) {
         currentDir = cdObj.path;
-        printDir(currentDir);
-      } else {
-        stdout.write(OPERATION_FAILED);
       }
+      printDir(currentDir);
       break;
 
     case 'ls':

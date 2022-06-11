@@ -1,5 +1,9 @@
 import { stat } from 'fs/promises';
-import { STATUS_OK, STATUS_ERROR } from '../utils/constants.js';
+import {
+  STATUS_OK,
+  STATUS_ERROR,
+  OPERATION_FAILED,
+} from '../utils/constants.js';
 import { getUpDir } from './up.js';
 
 import path from 'path';
@@ -14,17 +18,7 @@ export const getCdObj = async (currentDir, newDir) => {
   }
 
   try {
-    const stats = await stat(newDir);
-    if (stats.isDirectory()) {
-      return {
-        status: STATUS_OK,
-        path: newDir,
-      };
-    }
-  } catch {}
-
-  try {
-    const newPath = path.join(currentDir, newDir);
+    const newPath = path.resolve(currentDir, newDir);
     const stats = await stat(newPath);
     if (stats.isDirectory()) {
       return {
@@ -32,7 +26,9 @@ export const getCdObj = async (currentDir, newDir) => {
         path: newPath,
       };
     }
-  } catch {}
+  } catch {
+    process.stdout.write(OPERATION_FAILED);
+  }
 
   return { status: STATUS_ERROR };
 };

@@ -8,6 +8,7 @@ import { createFile } from './files/add.js';
 import { rename } from './files/rename.js';
 import { remove } from './files/remove.js';
 import { printEOL } from './os/eol.js';
+import { printCPUInfo } from './os/cpu.js';
 
 import {
   INVALID_INPUT,
@@ -52,37 +53,44 @@ rl.on('line', async (data) => {
     case 'ls':
       const list = await getList(currentDir);
       console.log(list);
+      printDir(currentDir);
       break;
 
     case 'cat':
       const [fileDir] = args;
       readFile(currentDir, fileDir);
+      printDir(currentDir);
       break;
 
     case 'add':
       const [fileName] = args;
       createFile(currentDir, fileName);
+      printDir(currentDir);
       break;
 
     case 'rn':
       const [currentFile, newFile] = args;
       rename(currentDir, currentFile, newFile);
+      printDir(currentDir);
       break;
 
     case 'copy':
       const [file, folder] = args;
       copy(currentDir, file, folder);
+      printDir(currentDir);
       break;
 
     case 'rm':
       const [fileNameRemove] = args;
       remove(currentDir, fileNameRemove);
+      printDir(currentDir);
       break;
 
     case 'mv':
       const [pathToFile, pathToNewDirectory] = args;
       copy(currentDir, pathToFile, pathToNewDirectory);
       remove(currentDir, pathToFile);
+      printDir(currentDir);
       break;
 
     case 'os':
@@ -90,6 +98,10 @@ rl.on('line', async (data) => {
       switch (arg) {
         case '--EOL':
           printEOL();
+          break;
+
+        case '--cpus':
+          printCPUInfo();
           break;
 
         default:

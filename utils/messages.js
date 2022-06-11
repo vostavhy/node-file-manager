@@ -1,4 +1,5 @@
 import { stdout, exit } from 'process';
+import { OPERATION_FAILED } from './constants.js';
 let userName = '';
 
 export const printGreetings = (args) => {
@@ -13,4 +14,8 @@ export const exitFunc = () => {
 
 export const printDir = (dirToPrint) => {
   stdout.write(`\nYou are currently in ${dirToPrint} \n`);
+};
+
+export const printError = () => {
+  console.log(OPERATION_FAILED);
 };

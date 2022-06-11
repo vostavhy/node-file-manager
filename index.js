@@ -1,4 +1,9 @@
-import { printGreetings, printDir, exitFunc } from './utils/messages.js';
+import {
+  printGreetings,
+  printDir,
+  exitFunc,
+  printError,
+} from './utils/messages.js';
 import { argv, stdin, stdout } from 'process';
 import { getUpDir } from './navigation/up.js';
 import { getCdObj } from './navigation/cd.js';
@@ -11,8 +16,13 @@ import { printEOL } from './os/eol.js';
 import { printCPUInfo } from './os/cpu.js';
 import { printHash } from './files/hash.js';
 import { printUsername } from './os/user.js';
+import { compress, deCompress } from './zip/compress.js';
 
-import { INVALID_INPUT, STATUS_OK } from './utils/constants.js';
+import {
+  INVALID_INPUT,
+  STATUS_OK,
+  OPERATION_FAILED,
+} from './utils/constants.js';
 
 import readLine from 'readline';
 import os from 'os';
@@ -121,6 +131,18 @@ rl.on('line', async (data) => {
     case 'hash':
       const [hashPathToFile] = args;
       printHash(currentDir, hashPathToFile);
+      break;
+
+    case 'compress':
+      const [fileCompress, destinationCompress] = args;
+      compress(currentDir, fileCompress, destinationCompress).catch(printError);
+      break;
+
+    case 'decompress':
+      const [fileDecompress, destinationDecompress] = args;
+      deCompress(currentDir, fileDecompress, destinationDecompress).catch(
+        printError
+      );
       break;
 
     default:

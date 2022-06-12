@@ -80,7 +80,7 @@ rl.on('line', async (data) => {
       printDir(currentDir);
       break;
 
-    case 'copy':
+    case 'cp':
       const [file, folder] = args;
       copy(currentDir, file, folder);
       printDir(currentDir);

@@ -4,9 +4,9 @@ import { OPERATION_FAILED } from '../utils/constants.js';
 import path from 'path';
 
 export const copy = async (currentDir, fileName, newDir) => {
-  const file = path.join(currentDir, fileName);
+  const file = path.resolve(currentDir, fileName);
   const newFolder = path.resolve(currentDir, newDir);
-  const newFile = path.join(newFolder, fileName);
+  const newFile = path.resolve(newFolder, fileName);
 
   // проверка, что указаны именно файл и папка и они существуют
   try {

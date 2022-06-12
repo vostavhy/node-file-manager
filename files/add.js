@@ -3,7 +3,7 @@ import { OPERATION_FAILED } from '../utils/constants.js';
 import path from 'path';
 
 export const createFile = (currentDir, fileName) => {
-  const filePath = path.join(currentDir, fileName);
+  const filePath = path.resolve(currentDir, fileName);
   const ws = createWriteStream(filePath, { flags: 'ax' });
   ws.on('error', () =>
     process.stdout.write(

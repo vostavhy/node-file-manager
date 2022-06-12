@@ -3,8 +3,8 @@ import { OPERATION_FAILED } from '../utils/constants.js';
 import path from 'path';
 
 export const rename = async (currentDir, curFile, nFile) => {
-  const currentFile = path.join(currentDir, curFile);
-  const newFile = path.join(currentDir, nFile);
+  const currentFile = path.resolve(currentDir, curFile);
+  const newFile = path.resolve(currentDir, nFile);
 
   let isNewFile;
 

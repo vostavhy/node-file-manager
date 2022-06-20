@@ -1,0 +1,21 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/file-manager/score.md",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vostavhy/node-file-manager.git"
+  },
+  "author": "Nick Malysh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vostavhy/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/vostavhy/node-file-manager#readme"
+}
